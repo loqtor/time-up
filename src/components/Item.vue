@@ -1,11 +1,50 @@
 <template>
-  <div class="item">{{item.name}}</div>
+  <div class="item">
+    {{item.name}} <br>
+    {{totalDuration}} <br>
+    <button v-on:click="toggleDetails">{{detailsButtonLabel}}</button>
+    <template v-if="showDetails">
+      <div v-for="round in item.rounds">
+        {{round.name}} | {{round.type}} <br>
+        {{round.duration}} <br>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'item',
-  props: ['item']
+  props: ['item'],
+  data () {
+    return {
+      showDetails: false,
+      detailsButtonLabel: 'View details'
+    }
+  },
+  computed: {
+    totalDuration () {
+      let total = 0
+
+      for (let i = 0; i < this.item.rounds.length; i++) {
+        let round = this.item.rounds[i]
+        total += round.duration
+      }
+
+      return total
+    }
+  },
+  methods: {
+    toggleDetails () {
+      console.log('Showing the details')
+      this.showDetails = !this.showDetails
+      if (this.showDetails) {
+        this.detailsButtonLabel = 'Hide details'
+      } else {
+        this.detailsButtonLabel = 'Show details'
+      }
+    }
+  }
 }
 </script>
 
