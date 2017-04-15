@@ -13,6 +13,7 @@ export default {
   data () {
     return {
       timers: [{
+        id: 1,
         name: 'Timer 1',
         rounds: [{
           name: 'Round 1',
@@ -29,6 +30,7 @@ export default {
         }]
       },
       {
+        id: 2,
         name: 'Timer 2',
         rounds: [{
           name: 'Round 1',

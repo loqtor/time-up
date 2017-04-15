@@ -3,6 +3,7 @@
     {{item.name}} <br>
     {{totalDuration}} <br>
     <button v-on:click="toggleDetails">{{detailsButtonLabel}}</button>
+    <button v-on:click="start">Start workout!</button>
     <template v-if="showDetails">
       <div v-for="round in item.rounds">
         {{round.name}} | {{round.type}} <br>
@@ -36,13 +37,16 @@ export default {
   },
   methods: {
     toggleDetails () {
-      console.log('Showing the details')
       this.showDetails = !this.showDetails
       if (this.showDetails) {
         this.detailsButtonLabel = 'Hide details'
       } else {
         this.detailsButtonLabel = 'Show details'
       }
+    },
+
+    start () {
+
     }
   }
 }
