@@ -2,9 +2,11 @@
   <div class="Workout">
     <div class="Workout Workout-name">{{currentTimer.name}}</div>
     <div class="Workout Workout-duration">{{currentTimer.duration}}</div>
+    <div v-if="isPlaying" class="Workout Workout-total-left">{{totalLeft}}</div>
     <button v-on:click="togglePlay">Start workout</button>
     <div class="round" v-for="round in currentTimer.rounds">
       {{round.name}} | {{round.type}} | {{round.duration}}
+      <p v-if="isPlaying && currentRound && currentRound.id === round.id">{{currentRoundLeft}}</p>
     </div>
   </list>
   </div>
@@ -19,7 +21,14 @@ export default {
   data () {
     return {
       timers: timers,
-      isPlaying: false
+      isPlaying: false,
+      currentRoundIndex: 0,
+      currentRound: null,
+      currentRoundLeft: null,
+      totalLeft: null,
+
+      roundTimeout: null,
+      cronTimeout: null
     }
   },
   computed: {
@@ -40,12 +49,54 @@ export default {
       }
 
       return total;
-    }
+    },
   },
 
   methods: {
     togglePlay () {
-      console.log('The play would be toggled.');
+      if (!this.isPlaying) {
+        this.totalLeft = this.totalDuration;
+        this.updateRound();
+        this.startTimers();
+        this.isPlaying = true;
+      } else {
+        this.finish();
+      }
+    },
+
+    updateRound() {
+      if (this.currentRoundIndex < this.currentTimer.rounds.length) {
+        this.currentRound = this.currentTimer.rounds[this.currentRoundIndex];
+        this.currentRoundLeft = this.currentRound.duration;
+        this.currentRoundIndex++;
+
+        this.roundTimeout = setTimeout(this.updateRound, this.currentRound.duration * 1000);
+      } else {
+        this.isPlaying = false;
+      }
+    },
+
+    startTimers() {
+      this.cronTimeout = setTimeout(this.updateTimers, 1000);
+    },
+
+    updateTimers() {
+      this.currentRoundLeft--;
+      this.totalLeft--;
+
+      if (this.totalLeft > 0) {
+        setTimeout(this.updateTimers, 1000);
+      } else {
+        this.finish();
+      }
+    },
+
+    finish() {
+      this.isPlaying = false;
+      this.currentRoundIndex = 0;
+      this.currentRound = null;
+      this.currentRoundLeft = null;
+      this.totalLeft = null;
     }
   }
 }
