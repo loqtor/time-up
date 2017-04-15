@@ -55,7 +55,7 @@ export default {
   methods: {
     togglePlay () {
       if (!this.isPlaying) {
-        this.totalLeft = this.totalDuration;
+        this.totalLeft = this.totalDuration + 1;
         this.updateRound();
         this.updateTimers();
         this.isPlaying = true;
@@ -67,10 +67,12 @@ export default {
     updateRound() {
       if (this.currentRoundIndex < this.currentTimer.rounds.length) {
         this.currentRound = this.currentTimer.rounds[this.currentRoundIndex];
-        this.currentRoundLeft = this.currentRound.duration;
+        this.currentRoundLeft = this.currentRound.duration + 1;
         this.currentRoundIndex++;
 
-        this.roundTimeout = setTimeout(this.updateRound, this.currentRound.duration * 1000);
+        this.roundTimeout = setTimeout(
+          this.updateRound,
+          this.currentRound.duration * 1000);
       } else {
         this.isPlaying = false;
       }
