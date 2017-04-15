@@ -57,7 +57,7 @@ export default {
       if (!this.isPlaying) {
         this.totalLeft = this.totalDuration;
         this.updateRound();
-        this.startTimers();
+        this.updateTimers();
         this.isPlaying = true;
       } else {
         this.finish();
@@ -74,10 +74,6 @@ export default {
       } else {
         this.isPlaying = false;
       }
-    },
-
-    startTimers() {
-      this.cronTimeout = setTimeout(this.updateTimers, 1000);
     },
 
     updateTimers() {
