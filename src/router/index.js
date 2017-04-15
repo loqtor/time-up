@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Dashboard from '@/components/Dashboard'
-import Workout from '@/components/Workout'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Dashboard from '@/components/Dashboard';
+import Workout from '@/components/Workout';
 
 Vue.use(Router)
 
