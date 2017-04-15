@@ -3,7 +3,9 @@
     {{item.name}} <br>
     {{totalDuration}} <br>
     <button v-on:click="toggleDetails">{{detailsButtonLabel}}</button>
-    <button v-on:click="start">Start workout!</button>
+    <button>
+      <router-link :to="{ name: 'workout', params: { id: item.id }}">Start workout!</router-link>
+    </button>
     <template v-if="showDetails">
       <div v-for="round in item.rounds">
         {{round.name}} | {{round.type}} <br>
