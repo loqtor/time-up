@@ -31,4 +31,4 @@ export default [{
     duration: 150,
     type: 'workout'
   }]
-}]
+}];

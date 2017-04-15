@@ -26,29 +26,25 @@ export default {
     }
   },
   computed: {
-    totalDuration () {
+    totalDuration() {
       let total = 0
 
       for (let i = 0; i < this.item.rounds.length; i++) {
-        let round = this.item.rounds[i]
-        total += round.duration
+        let round = this.item.rounds[i];
+        total += round.duration;
       }
 
       return total
     }
   },
   methods: {
-    toggleDetails () {
-      this.showDetails = !this.showDetails
+    toggleDetails() {
+      this.showDetails = !this.showDetails;
       if (this.showDetails) {
-        this.detailsButtonLabel = 'Hide details'
+        this.detailsButtonLabel = 'Hide details';
       } else {
-        this.detailsButtonLabel = 'Show details'
+        this.detailsButtonLabel = 'Show details';
       }
-    },
-
-    start () {
-
     }
   }
 }

@@ -23,29 +23,29 @@ export default {
     }
   },
   computed: {
-    currentTimer () {
-      return this.timers.find(t => t.id === parseInt(this.id))
+    currentTimer() {
+      return this.timers.find(t => t.id === parseInt(this.id));
     },
     /**
      * Don't repeat yourself, mister.
      * @TODO: Have this as part of the timer model when migrating to
      * vue-model
      */
-    totalDuration () {
+    totalDuration() {
       let total = 0
 
       for (let i = 0; i < this.currentTimer.rounds.length; i++) {
-        let round = this.currentTimer.rounds[i]
-        total += round.duration
+        let round = this.currentTimer.rounds[i];
+        total += round.duration;
       }
 
-      return total
+      return total;
     }
   },
 
   methods: {
     togglePlay () {
-      console.log('The play would be toggled.')
+      console.log('The play would be toggled.');
     }
   }
 }
