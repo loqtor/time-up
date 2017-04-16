@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import timers from '@/mocks/timers'
+import timers from '@/mocks/timers';
 
 export default {
-  name: 'workout',
+  name: 'workout-details',
   props: ['id'],
   data () {
     return {
@@ -97,7 +97,7 @@ export default {
       this.totalLeft = null;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

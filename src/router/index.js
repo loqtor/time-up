@@ -1,28 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Dashboard from '@/components/Dashboard';
-import Workout from '@/components/Workout';
+import DashboardRoutes from '@/components/dashboard/Routes';
+import WorkoutRoutes from '@/components/workout/Routes';
 
 Vue.use(Router)
 
+/**
+ * If I just put an array here, this fails.
+ * Not sure why, but the concat seemed to work fine.
+ */
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      redirect: {
-        name: 'dashboard'
-      }
-    },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard
-    },
-    {
-      path: '/workout/:id',
-      props: true,
-      name: 'workout',
-      component: Workout
-    }
-  ]
+  routes: DashboardRoutes.concat(WorkoutRoutes)
 })
